@@ -13,11 +13,37 @@
 
     <script src="https://unpkg.com/supersimpledev/babel.js"></script>
     <script type="text/babel">
-      function ChatInput() { //O nome do componente sempre deve começar com letra maiúscula (PascalCase)
-        return ( //<input /> é um shortcut para <input></input> (apenas para os elementos sem conteúdo dentro)
+      function ChatInput({chatMessages, setChatMessages}) {
+        const [inputText, setInputText] = React.useState('');
+
+        function saveInputText(event) {
+          setInputText(event.target.value);
+        }
+
+        function sendMessage() {
+          setChatMessages([
+            ...chatMessages,
+            {
+              message: inputText,
+              sender: 'user',
+              id: crypto.randomUUID()
+            }
+          ]);
+
+          setInputText('');
+        }
+
+        return (
           <>
-            <input placeholder="Send a message to Chatbot" size="30" /> 
-            <button>Send</button>
+            <input 
+              placeholder="Send a message to Chatbot" 
+              size="30"
+              onChange={saveInputText} 
+              value={inputText}
+            /> 
+            <button
+              onClick={sendMessage}
+            >Send</button>
           </>
         ); // '<> </>' é um fragmento. Permite com que retorne um elemento da função sem criar uma div extra
       }
@@ -41,25 +67,52 @@
         );
       }
 
+      function ChatMessages({chatMessages}) {     
+        return (
+          <>
+            {chatMessages.map(chatMessage => {
+              return(
+                <ChatMessage 
+                  message={chatMessage.message}
+                  sender={chatMessage.sender}
+                  key={chatMessage.id}
+                />
+              );
+            })}
+          </>
+        );
+      }
+
       function App() {
+        const [chatMessages, setChatMessages] = React.useState([{
+          message: 'hello chatbot',
+          sender: 'user',
+          id: 'id1'
+        }, {
+          message: 'Hello! How can I help you?',
+          sender: 'robot',
+          id: 'id2'
+        }, {
+          message: 'can you get me todays date?',
+          sender: 'user',
+          id: 'id3'
+        }, {
+          message: 'Today is June 1',
+          sender: 'robot',
+          id: 'id4'
+        }]);
+        // const [chatMessages, setChatMessages] = array;
+        // const chatMessages = array[0]; Primeiro elemento do array de useState são os dados atuais salvos
+        // const setChatMessages = array[1]; O segundo elemento é uma função que atualiza os dados juntamente com o HTML (sempre colocar set no começo do nome)
+        
         return (
         <>
-          <ChatInput />
-          <ChatMessage
-            message="hello chatbot"
-            sender ="user"
+          <ChatInput
+            chatMessages={chatMessages}
+            setChatMessages={setChatMessages}
           />
-          <ChatMessage
-            message="Hello! How can I help you?"
-            sender ="robot"
-          /> 
-          <ChatMessage
-            message="can you get me todays date?"
-            sender ="user"
-          /> 
-          <ChatMessage
-            message="Today is June 1"
-            sender ="robot"
+          <ChatMessages
+            chatMessages={chatMessages}
           /> 
         </>
         );
