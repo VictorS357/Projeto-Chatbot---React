@@ -34,8 +34,17 @@
 
           setChatMessages(newChatMessages);
 
-          setInputText('')
-          
+          setInputText('');
+          setChatMessages([
+            ...newChatMessages,
+            {
+              message: 'Loading...',
+              sender: 'robot',
+              id: crypto.randomUUID()
+            }
+          ]);
+
+
           const response = await Chatbot.getResponseAsync(inputText);
           setChatMessages([
             ...newChatMessages,
