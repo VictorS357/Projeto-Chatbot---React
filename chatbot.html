@@ -74,6 +74,11 @@
         color: gray;
       }
 
+      .loading {
+        width: 40px;
+        margin: -15px;
+      }
+
       .app-container {
         max-width: 600px;
         display: flex;
@@ -126,7 +131,7 @@
           setChatMessages([
             ...newChatMessages,
             {
-              message: 'Loading...',
+              message: <img className="loading" src="img/loading-spinner.gif" />,
               sender: 'robot',
               id: crypto.randomUUID()
             }
