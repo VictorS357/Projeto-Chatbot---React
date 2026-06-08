@@ -69,6 +69,11 @@
         scrollbar-width: none;
       }
 
+      .welcome-p {
+        text-align: center;
+        color: gray;
+      }
+
       .app-container {
         max-width: 600px;
         display: flex;
@@ -213,29 +218,16 @@
       }
 
       function App() {
-        const [chatMessages, setChatMessages] = React.useState([{
-          message: 'hello chatbot',
-          sender: 'user',
-          id: 'id1'
-        }, {
-          message: 'Hello! How can I help you?',
-          sender: 'robot',
-          id: 'id2'
-        }, {
-          message: 'can you get me todays date?',
-          sender: 'user',
-          id: 'id3'
-        }, {
-          message: 'Today is June 1',
-          sender: 'robot',
-          id: 'id4'
-        }]);
+        const [chatMessages, setChatMessages] = React.useState([]);
         // const [chatMessages, setChatMessages] = array;
         // const chatMessages = array[0]; Primeiro elemento do array de useState são os dados atuais salvos
         // const setChatMessages = array[1]; O segundo elemento é uma função que atualiza os dados juntamente com o HTML (sempre colocar set no começo do nome)
         
         return (
         <div className="app-container">
+          {chatMessages.length === 0 && (
+            <p className="welcome-p">Welcome to the chatbot project! Send a message using the textbox below.</p>
+          )}
           <ChatMessages
             chatMessages={chatMessages}
           /> 
