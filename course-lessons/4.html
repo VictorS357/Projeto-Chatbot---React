@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Hooks and Styles</title>
+    <style>
+      .on-button,
+      .off-button {
+        color: white;
+        padding: 10px 12px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      .on-button {
+        background-color: rgb(25, 135, 84);
+      }
+
+      .off-button {
+        background-color: rgb(220, 53, 69);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="js-container"></div>
+
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel">
+      function ResponsiveButton() {
+        const [isButtonOn, setIsButtonOn] = React.useState(false);
+        
+        function OnOffToggle() {
+          if(!isButtonOn) {
+            setIsButtonOn(true);
+          } else {
+            setIsButtonOn(false)
+          }
+        }
+
+        return(
+          <button 
+            className={isButtonOn ? "on-button" : "off-button"}
+            onClick={OnOffToggle}
+          >
+            {isButtonOn ? 'ON' : 'OFF'}  
+          </button>
+        );
+      }
+
+      function App() {
+        return (
+          <>
+            <ResponsiveButton />
+          </>
+        );
+      }
+
+      const container = document.querySelector('.js-container');
+      const root = ReactDOM.createRoot(container);
+      root.render(<App />);
+    </script>
+  </body>
+</html>
