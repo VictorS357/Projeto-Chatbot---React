@@ -17,6 +17,9 @@
 .chat-message-robot img,
 .chat-message-user img {
   width: 45px;
+  height: 45px;
+  border-radius: 45px;
+  object-fit: cover;
 }
 
 .chat-message-user {
