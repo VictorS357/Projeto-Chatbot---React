@@ -6,7 +6,7 @@ import { Chatbot } from 'supersimpledev'
 import './App.css'
 
 function App() {
-  const [chatMessages, setChatMessages] = useState([]);
+  const [chatMessages, setChatMessages] = useState(JSON.parse(localStorage.getItem('messages')) || []);
   // const [chatMessages, setChatMessages] = array;
   // const chatMessages = array[0]; Primeiro elemento do array de useState são os dados atuais salvos
   // const setChatMessages = array[1]; O segundo elemento é uma função que atualiza os dados juntamente com o HTML (sempre colocar set no começo do nome)
@@ -16,6 +16,10 @@ function App() {
       Fernanda: 'Amor da minha vida'
     });
   }, []);
+
+  useEffect(() => {
+    localStorage.setItem('messages', JSON.stringify(chatMessages))
+  }, [chatMessages]);
 
   return (
   <div className="app-container">
