@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Chatbot } from 'supersimpledev'
 import dayjs from 'dayjs';
+import ChatMessages from './ChatMessages';
 import LoadingGif from '../assets/loading-spinner.gif'
 import './ChatInput.css';
 
@@ -65,6 +66,11 @@ export function ChatInput({chatMessages, setChatMessages}) {
         }
     }
 
+    function clearMessages() {
+        localStorage.removeItem('messages');
+        setChatMessages([]);
+    }
+
     return (
         <div className="chat-input-container">
         <input 
@@ -79,6 +85,10 @@ export function ChatInput({chatMessages, setChatMessages}) {
             onClick={sendMessage}
             className="send-btn"
         >Send</button>
+        <button
+            onClick={clearMessages}
+            className="clear-btn"
+        >Clear</button>
         </div>
     ); // '<> </>' é um fragmento. Permite com que retorne um elemento da função sem criar uma div extra
 }

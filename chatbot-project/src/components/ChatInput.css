@@ -7,14 +7,22 @@
   flex-grow: 1;
 }
 
-.send-btn {
-  background-color: rgb(25, 135, 84);
-  color: white;
+.send-btn, .clear-btn {
   padding: 10px 20px;
   font-size: 15px;
   border: none;
   border-radius: 10px;
   cursor: pointer;
+}
+
+.send-btn {
+  background-color: rgb(25, 135, 84);
+  color: white;
+}
+
+.clear-btn {
+  background-color: rgb(230, 230, 230);
+  margin-left: 10px;
 }
 
 .chat-input-container {
