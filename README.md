@@ -1,6 +1,6 @@
 # Projeto Chatbot
 
-Confira a aplicação em execução: [Clique aqui para acessar o projeto online](https://victors357.github.io/HTML--CSS--JS-Project/)
+Confira a aplicação em execução: [Clique aqui para acessar o projeto online](https://victors357.github.io/Projeto-Chatbot---React/)
 Caso o seu navegador detecte o site como nocivo, apenas clique em "mais informações", ou "mais detalhes" e após isso, em "continuar no site" ou opção parecida.
 
 ## Instruções importantes:
